@@ -19,6 +19,7 @@ df=load_data("train_data.csv")
 @st.cache_resource
 def load_model(model):
        model=joblib.load(model)
+       return model
 model = load_model('best_model_compressed.joblib')
 
 df_city_and_plz=df[['city','geo_plz']]
