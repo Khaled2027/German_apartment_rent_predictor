@@ -8,9 +8,16 @@ st.title("German Apartment Rent Prediction App")
 st.markdown("Fill in the apartment details below to get the estimated total rent")
 st.divider()
 
-df=pd.read_csv("train_data.csv")
-# Loads the best model
-model = joblib.load('best_model_compressed.joblib')
+@st.cache_data
+def load_data(data):
+       df=pd.read_csv(data)
+       return df
+df=load_data("train_data.csv")
+
+@st.cache_resource
+def load_model(model):
+       model=joblib.load(model)
+model = load_model('best_model_compressed.joblib')
 
 df_city_and_plz=df[['city','geo_plz']]
 
