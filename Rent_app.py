@@ -8,12 +8,14 @@ st.title("German Apartment Rent Prediction App")
 st.markdown("Fill in the apartment details below to get the estimated total rent")
 st.divider()
 
+# Loads the data
 @st.cache_data
 def load_data(data):
        df=pd.read_csv(data)
        return df
 df=load_data("train_data.csv")
 
+# Loads the best model
 @st.cache_resource
 def load_model(model):
        model=joblib.load(model)
